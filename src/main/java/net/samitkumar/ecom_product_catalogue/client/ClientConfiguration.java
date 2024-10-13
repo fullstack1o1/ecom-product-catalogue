@@ -11,7 +11,7 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 public class ClientConfiguration {
 
     @Bean
-    CategoryClient categoryClient(WebClient.Builder webClientBuilder, @Value("spring.application.client.ecom-db-uri") String baseUri) {
+    CategoryClient categoryClient(WebClient.Builder webClientBuilder, @Value("${spring.application.client.ecom-db-uri}") String baseUri) {
         webClientBuilder.baseUrl(baseUri);
         WebClientAdapter adapter = WebClientAdapter.create(webClientBuilder.build());
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();

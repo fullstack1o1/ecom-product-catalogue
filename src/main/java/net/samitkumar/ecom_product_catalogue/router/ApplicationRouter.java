@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationRouter {
-    CategoryClient categoryClient;
+    final CategoryClient categoryClient;
 
     @Bean
     RouterFunction<ServerResponse> routerFunction() {
