@@ -26,6 +26,9 @@ public class ApplicationRouter {
     }
 
     private Mono<ServerResponse> allCategory(ServerRequest request) {
-        return categoryClient.allCategory().flatMap(ServerResponse.ok()::bodyValue);
+        return categoryClient
+                .allCategory()
+                .map(root -> root._embedded().categories())
+                .flatMap(ServerResponse.ok()::bodyValue);
     }
 }
