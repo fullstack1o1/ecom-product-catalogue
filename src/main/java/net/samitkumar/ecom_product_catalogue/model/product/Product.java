@@ -12,7 +12,7 @@ package net.samitkumar.ecom_product_catalogue.model.product;
  "quantity": 10
  }
  */
-public record Product(int id, int category, String name, String description, double price, Inventory inventory) {
-    public record Inventory(int id, int productId, int quantity) {}
+public record Product(Long id, int category, String name, String description, double price, Inventory inventory) {
+    public record Inventory(Long id, int productId, int quantity) {}
 }
 

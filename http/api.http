@@ -1,2 +1,44 @@
+@HOST=http://localhost:8081
+
 ###
-GET http://localhost:8081/category
+GET {{HOST}}/category
+
+###
+GET {{HOST}}/category/2
+
+###
+GET {{HOST}}/category/search?nameContain=Ele
+
+###
+POST {{HOST}}/category
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New Category Three",
+  "description": "Awesome Product"
+}
+
+###
+PUT {{HOST}}/category/6
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New Category six",
+  "description": "Awesome Product"
+}
+
+###
+PATCH {{HOST}}/category/6
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New Category 6",
+  "products": []
+}
+
+###
+
+DELETE {{HOST}}/category/3
