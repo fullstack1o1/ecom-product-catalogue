@@ -24,6 +24,7 @@ public class ApplicationRouter {
                 .route()
                 .before((request) -> {
                     log.info("{} {}", request.path(), request.method());
+                    request.attributes().put("startTime", System.currentTimeMillis());
                     return request;
                 })
                 .path("/category", builder -> builder
@@ -36,7 +37,11 @@ public class ApplicationRouter {
                         .DELETE("/{id}", this::deleteCategory)
                 )
                 .after(((serverRequest, serverResponse) -> {
-                    log.info("{} {} {}", serverRequest.path(), serverRequest.method(), serverResponse.statusCode());
+                    long startTime = serverRequest.attribute("startTime")
+                            .map(attr -> (Long) attr)
+                            .orElse(0L);
+                    long timeTaken = System.currentTimeMillis() - startTime;
+                    log.info("{} {} {} {}", serverRequest.path(), serverRequest.method(), serverResponse.statusCode(), timeTaken);
                     return serverResponse;
                 }))
                 .build();
